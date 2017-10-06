@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 struct WeeklyReport {
-    
+
     var dayZeroTemperatureMax: Int
     var dayZeroTemperatureMin: Int
 
@@ -18,22 +18,22 @@ struct WeeklyReport {
     var dayOneTemperatureMin: Int
     var dayOneName: String?
     var dayOneIcon: UIImage?
-    
+
     var dayTwoTemperatureMax: Int
     var dayTwoTemperatureMin: Int
     var dayTwoName: String?
     var dayTwoIcon: UIImage?
-    
+
     var dayThreeTemperatureMax: Int
     var dayThreeTemperatureMin: Int
     var dayThreeName: String?
     var dayThreeIcon: UIImage?
-    
+
     var dayFourTemperatureMax: Int
     var dayFourTemperatureMin: Int
     var dayFourName: String?
     var dayFourIcon: UIImage?
-    
+
     var dayFiveTemperatureMax: Int
     var dayFiveTemperatureMin: Int
     var dayFiveName: String?
@@ -43,15 +43,15 @@ struct WeeklyReport {
     var daySixTemperatureMin: Int
     var daySixName: String?
     var daySixIcon: UIImage?
-    
+
     init (weatherDictionary: NSDictionary) {
-        
+
         let weeklyWeather = weatherDictionary["daily"] as! NSDictionary
         let weeklyForcast = weeklyWeather["data"] as? NSArray
         let dayZero = weeklyForcast?[0] as? [String: Any]
-        dayZeroTemperatureMax =  fahrenheitToCelsius(dayZero?["temperatureMax"] as! Int)
+        dayZeroTemperatureMax = fahrenheitToCelsius(dayZero?["temperatureMax"] as! Int)
         dayZeroTemperatureMin = fahrenheitToCelsius(dayZero?["temperatureMin"] as! Int)
-        
+
         //DAY ONE
         let dayOne = weeklyForcast?[1] as? [String: Any]
         dayOneTemperatureMax = fahrenheitToCelsius(dayOne?["temperatureMax"] as! Int)
@@ -60,17 +60,17 @@ struct WeeklyReport {
         dayOneName = weekDateStringFromUnixtime(dayOneTimeIntValue)
         let dayOneIconString = dayOne?["icon"] as! String
         dayOneIcon = weatherIconFromString(dayOneIconString)
-            
+
         //DAY TWO
         let dayTwo = weeklyForcast?[2] as? [String: Any]
-                
+
         dayTwoTemperatureMax = fahrenheitToCelsius(dayTwo?["temperatureMax"] as! Int)
         dayTwoTemperatureMin = fahrenheitToCelsius(dayTwo?["temperatureMin"] as! Int)
         let dayTwoTimeIntValue = dayTwo?["sunriseTime"] as! Int
         dayTwoName = weekDateStringFromUnixtime(dayTwoTimeIntValue)
         let dayTwoIconString = dayTwo?["icon"] as! String
         dayTwoIcon = weatherIconFromString(dayTwoIconString)
-        
+
         //DAY THREE
         let dayThree = weeklyForcast?[3] as? [String: Any]
         dayThreeTemperatureMax = fahrenheitToCelsius(dayThree?["temperatureMax"] as! Int)
@@ -79,7 +79,7 @@ struct WeeklyReport {
         dayThreeName = weekDateStringFromUnixtime(dayThreeTimeIntValue)
         let dayThreeIconString = dayThree?["icon"] as! String
         dayThreeIcon = weatherIconFromString(dayThreeIconString)
-        
+
         //DAY FOUR
         let dayFour = weeklyForcast?[4] as? [String: Any]
         dayFourTemperatureMax = fahrenheitToCelsius(dayFour?["temperatureMax"] as! Int)
